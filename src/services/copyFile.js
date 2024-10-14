@@ -17,7 +17,7 @@ const copyFile = async (command) => {
     await pipelineAsync(readableStream, writableStream);
 
     console.log(`File copied from ${pathToFile} to ${pathToNewDirectory}\n`);
-  } catch (err) {
+  } catch {
     console.log("Operation failed\n");
   }
 };

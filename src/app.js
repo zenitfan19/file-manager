@@ -2,7 +2,7 @@ import { stdin, stdout } from "node:process";
 import { homedir } from "node:os";
 import { createInterface } from "node:readline/promises";
 import { getCLIArgument } from "./utils/getCLIArgument.js";
-import { commandHandler } from "./utils/commandHadler.js";
+import { commandHandler } from "./utils/commandHandler.js";
 import { exitProcess } from "./services/exitProcess.js";
 import { printCurrentDirectory } from "./utils/printCurrentDirectory.js";
 import { changeDirectory } from "./services/changeDirectory.js";

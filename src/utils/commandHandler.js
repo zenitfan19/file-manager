@@ -30,7 +30,7 @@ const commandHandler = async (command) => {
   }
 
   if (command.startsWith("cat")) {
-    readFile(command);
+    await readFile(command);
     return;
   }
 

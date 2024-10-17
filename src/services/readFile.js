@@ -1,10 +1,13 @@
 import { createReadStream } from "node:fs";
+import { resolve } from "node:path";
+import { cwd } from "node:process";
 
 const readFile = async (command) => {
   const filePath = command.slice(3).trim();
+  const filePathResolved = resolve(cwd(), filePath);
 
   try {
-    const readableStream = createReadStream(filePath, { encoding: "utf8" });
+    const readableStream = createReadStream(filePathResolved, { encoding: "utf8" });
 
     await new Promise((resolve, reject) => {
       readableStream.on('data', (chunk) => {

@@ -2,7 +2,8 @@ import { createReadStream, createWriteStream } from "node:fs";
 import { unlink } from "node:fs/promises";
 import { pipeline } from "node:stream";
 import { promisify } from "node:util";
-import { basename, join } from "node:path";
+import { basename, resolve } from "node:path";
+import { cwd } from 'node:process';
 
 const pipelineAsync = promisify(pipeline);
 
@@ -10,15 +11,16 @@ const moveFile = async (command) => {
   try {
     const commandParams = command.slice(2).trim();
     const [pathToFile, pathToNewDirectory] = commandParams.split(" ");
-    const pathToNewFile = join(pathToNewDirectory, basename(pathToFile));
+    const pathToFileResolved = resolve(cwd(), pathToFile);
+    const pathToNewFileResolved = resolve(cwd(), pathToNewDirectory, basename(pathToFileResolved));
 
-    const readableStream = createReadStream(pathToFile);
-    const writableStream = createWriteStream(pathToNewFile);
+    const readableStream = createReadStream(pathToFileResolved);
+    const writableStream = createWriteStream(pathToNewFileResolved);
 
     await pipelineAsync(readableStream, writableStream);
-    await unlink(pathToFile);
+    await unlink(pathToFileResolved);
 
-    console.log(`File moved from ${pathToFile} to ${pathToNewDirectory}\n`);
+    console.log(`File moved from ${pathToFileResolved} to ${pathToNewDirectory}\n`);
   } catch (err) {
     console.log("Operation failed\n");
   }

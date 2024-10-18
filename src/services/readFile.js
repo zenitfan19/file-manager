@@ -4,22 +4,25 @@ import { cwd } from "node:process";
 
 const readFile = async (command) => {
   const filePath = command.slice(3).trim();
-  const filePathResolved = resolve(cwd(), filePath);
 
   try {
-    const readableStream = createReadStream(filePathResolved, { encoding: "utf8" });
+    const filePathResolved = resolve(cwd(), filePath);
+
+    const readableStream = createReadStream(filePathResolved, {
+      encoding: "utf8",
+    });
 
     await new Promise((resolve, reject) => {
-      readableStream.on('data', (chunk) => {
-          console.log(chunk);
+      readableStream.on("data", (chunk) => {
+        console.log(chunk);
       });
 
-      readableStream.on('end', () => {
-          console.log('\n');
-          resolve();
+      readableStream.on("end", () => {
+        console.log("\n");
+        resolve();
       });
-      readableStream.on('error', (err) => reject(err));
-  });
+      readableStream.on("error", (err) => reject(err));
+    });
   } catch (err) {
     console.log(`Operation failed ${err}\n`);
   }

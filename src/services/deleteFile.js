@@ -4,9 +4,10 @@ import { cwd } from "node:process";
 
 const deleteFile = async (command) => {
   const filePath = command.slice(3).trim();
-  const filePathResolved = resolve(cwd(), filePath);
 
   try {
+    const filePathResolved = resolve(cwd(), filePath);
+
     await unlink(filePathResolved);
 
     console.log(`File deleted at ${filePathResolved}\n`);

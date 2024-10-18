@@ -9,12 +9,13 @@ const asyncPipeline = promisify(pipeline);
 
 const calculateHash = async (command) => {
   const filePath = command.slice(4).trim();
-  const filePathResolved = resolve(cwd(), filePath);
-
-  const fileStream = createReadStream(filePathResolved);
-  const hash = createHash("sha256");
 
   try {
+    const filePathResolved = resolve(cwd(), filePath);
+
+    const fileStream = createReadStream(filePathResolved);
+    const hash = createHash("sha256");
+
     await asyncPipeline(fileStream, hash);
     const hashDigest = hash.digest("hex");
 

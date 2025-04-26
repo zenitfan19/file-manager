@@ -15,7 +15,7 @@ const readLine = createInterface({
   input: stdin,
   output: stdout,
   terminal: true,
-  // prompt: 'Enter a command: ',
+  prompt: "🗂️  > ",
 });
 
 changeDirectory(homedir());

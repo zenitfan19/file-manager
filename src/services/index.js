@@ -1,4 +1,5 @@
 export * from "./addFile.js";
+export * from "./addFolder.js";
 export * from "./calcHash.js";
 export * from "./changeDirectory.js";
 export * from "./compressFile.js";

@@ -12,6 +12,7 @@ import {
   printOSInformation,
   changeDirectory,
   listDirectoryContent,
+  addFolder,
 } from "../services/index.js";
 import { invalidInputErrorLog } from "./logger.js";
 
@@ -39,6 +40,11 @@ const commandHandler = async (command) => {
 
   if (command.startsWith("add")) {
     await addFile(command);
+    return;
+  }
+
+  if (command.startsWith("mkdir")) {
+    await addFolder(command);
     return;
   }
 

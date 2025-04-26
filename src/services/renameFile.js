@@ -1,7 +1,7 @@
 import { rename } from "node:fs/promises";
 import { dirname, basename, resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/checkFileAlreadyExists.js";
+import { checkFileAlreadyExists } from "../utils/index.js";
 
 const renameFile = async (command) => {
   const commandParams = command.slice(2).trim();

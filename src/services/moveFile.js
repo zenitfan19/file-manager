@@ -4,7 +4,7 @@ import { pipeline } from "node:stream";
 import { promisify } from "node:util";
 import { basename, resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/checkFileAlreadyExists.js";
+import { checkFileAlreadyExists } from "../utils/index.js";
 
 const pipelineAsync = promisify(pipeline);
 

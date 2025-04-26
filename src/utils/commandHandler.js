@@ -1,16 +1,18 @@
 import { exit, cwd } from "node:process";
-import { printOSInformation } from "../services/os.js";
-import { changeDirectory } from "../services/changeDirectory.js";
-import { listDirectoryContent } from "../services/listDirectoryContent.js";
-import { addFile } from "../services/addFile.js";
-import { readFile } from "../services/readFile.js";
-import { deleteFile } from "../services/deleteFile.js";
-import { renameFile } from "../services/renameFile.js";
-import { copyFile } from "../services/copyFile.js";
-import { moveFile } from "../services/moveFile.js";
-import { calculateHash } from "../services/calcHash.js";
-import { compressFile } from "../services/compressFile.js";
-import { decompressFile } from "../services/decompressFile.js";
+import {
+  addFile,
+  readFile,
+  deleteFile,
+  renameFile,
+  copyFile,
+  moveFile,
+  calculateHash,
+  compressFile,
+  decompressFile,
+  printOSInformation,
+  changeDirectory,
+  listDirectoryContent,
+} from "../services/index.js";
 
 const commandHandler = async (command) => {
   if (command === "up") {

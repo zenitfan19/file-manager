@@ -4,7 +4,7 @@ import { pipeline } from "node:stream";
 import { createBrotliDecompress } from "node:zlib";
 import { resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/checkFileAlreadyExists.js";
+import { checkFileAlreadyExists } from "../utils/index.js";
 
 const asyncPipeline = promisify(pipeline);
 

@@ -1,6 +1,7 @@
 import { unlink } from "node:fs/promises";
 import { resolve } from "node:path";
 import { cwd } from "node:process";
+import { operationFailedErrorLog, log } from "../utils/index.js";
 
 const deleteFile = async (command) => {
   const filePath = command.slice(3).trim();
@@ -10,9 +11,9 @@ const deleteFile = async (command) => {
 
     await unlink(filePathResolved);
 
-    console.log(`File deleted at ${filePathResolved}\n`);
+    log.green(`File deleted at ${filePathResolved}`);
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

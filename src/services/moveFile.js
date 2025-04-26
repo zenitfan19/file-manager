@@ -4,7 +4,11 @@ import { pipeline } from "node:stream";
 import { promisify } from "node:util";
 import { basename, resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/index.js";
+import {
+  checkFileAlreadyExists,
+  operationFailedErrorLog,
+  log,
+} from "../utils/index.js";
 
 const pipelineAsync = promisify(pipeline);
 
@@ -27,11 +31,9 @@ const moveFile = async (command) => {
     await pipelineAsync(readableStream, writableStream);
     await unlink(pathToFileResolved);
 
-    console.log(
-      `File moved from ${pathToFileResolved} to ${pathToNewDirectory}\n`
-    );
+    log.green(`File moved from ${pathToFileResolved} to ${pathToNewDirectory}`);
   } catch (err) {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

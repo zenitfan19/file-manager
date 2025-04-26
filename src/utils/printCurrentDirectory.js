@@ -1,7 +1,8 @@
 import { cwd } from "node:process";
+import { log } from "./logger.js";
 
 const printCurrentDirectory = () => {
-  console.log(`Current directory: ${cwd()}\n`);
+  log.blue(`Current directory: ${cwd()}`);
 };
 
 export { printCurrentDirectory };

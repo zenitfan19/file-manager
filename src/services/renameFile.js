@@ -1,7 +1,11 @@
 import { rename } from "node:fs/promises";
 import { dirname, basename, resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/index.js";
+import {
+  checkFileAlreadyExists,
+  operationFailedErrorLog,
+  log,
+} from "../utils/index.js";
 
 const renameFile = async (command) => {
   const commandParams = command.slice(2).trim();
@@ -18,11 +22,11 @@ const renameFile = async (command) => {
 
     await rename(pathToFileResolved, pathToNewFileResolved);
 
-    console.log(
-      `File renamed from ${basename(pathToFileResolved)} to ${newFileName}\n`
+    log.green(
+      `File renamed from ${basename(pathToFileResolved)} to ${newFileName}`
     );
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

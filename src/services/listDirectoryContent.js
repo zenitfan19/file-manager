@@ -1,4 +1,5 @@
 import { readdir } from "node:fs/promises";
+import { operationFailedErrorLog } from "../utils/index.js";
 
 const listDirectoryContent = async (path) => {
   try {
@@ -22,7 +23,7 @@ const listDirectoryContent = async (path) => {
     console.table(filesAndFoldersMapped);
     console.log("\n");
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

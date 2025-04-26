@@ -1,14 +1,15 @@
 import { EOL, cpus, homedir, userInfo, arch } from "node:os";
+import { invalidInputErrorLog, log } from "../utils/index.js";
 
 const printOSInformation = (command) => {
   const osCommandIndex = command.indexOf("--");
   const osCommand = command.substring(osCommandIndex + 2, command.length);
   switch (osCommand) {
     case "EOL":
-      console.log(`Default system End-Of-Line: ${JSON.stringify(EOL)}\n`);
+      log.cyan(`Default system End-Of-Line: ${JSON.stringify(EOL)}`);
       break;
     case "cpus":
-      console.log(`Total ${cpus().length} CPUs\n`);
+      log.cyan(`Total ${cpus().length} CPUs`);
       console.table(
         cpus().map(({ model, speed }) => ({
           model,
@@ -18,16 +19,16 @@ const printOSInformation = (command) => {
       console.log("\n");
       break;
     case "homedir":
-      console.log(`Home directory: ${homedir()}\n`);
+      log.cyan(`Home directory: ${homedir()}`);
       break;
     case "username":
-      console.log(`Current system username: ${userInfo().username}\n`);
+      log.cyan(`Current system username: ${userInfo().username}`);
       break;
     case "architecture":
-      console.log(`CPU architecture: ${arch()}\n`);
+      log.cyan(`CPU architecture: ${arch()}`);
       break;
     default:
-      console.log("Invalid input!\n");
+      invalidInputErrorLog();
   }
 };
 

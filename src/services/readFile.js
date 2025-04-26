@@ -1,6 +1,7 @@
 import { createReadStream } from "node:fs";
 import { resolve } from "node:path";
 import { cwd } from "node:process";
+import { operationFailedErrorLog } from "../utils/index.js";
 
 const readFile = async (command) => {
   const filePath = command.slice(3).trim();
@@ -24,7 +25,7 @@ const readFile = async (command) => {
       readableStream.on("error", (err) => reject(err));
     });
   } catch (err) {
-    console.log(`Operation failed ${err}\n`);
+    operationFailedErrorLog();
   }
 };
 

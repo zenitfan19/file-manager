@@ -4,7 +4,11 @@ import { pipeline } from "node:stream";
 import { createBrotliDecompress } from "node:zlib";
 import { resolve } from "node:path";
 import { cwd } from "node:process";
-import { checkFileAlreadyExists } from "../utils/index.js";
+import {
+  checkFileAlreadyExists,
+  operationFailedErrorLog,
+  log,
+} from "../utils/index.js";
 
 const asyncPipeline = promisify(pipeline);
 
@@ -25,11 +29,11 @@ const decompressFile = async (command) => {
 
     await asyncPipeline(readStream, brotli, writeStream);
 
-    console.log(
-      `File ${pathToFileResolved} decompressed to ${pathToNewFileResolved}\n`
+    log.green(
+      `File ${pathToFileResolved} decompressed to ${pathToNewFileResolved}`
     );
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

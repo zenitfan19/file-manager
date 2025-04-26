@@ -4,6 +4,7 @@ import { pipeline } from "node:stream";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import { cwd } from "node:process";
+import { operationFailedErrorLog, log } from "../utils/index.js";
 
 const asyncPipeline = promisify(pipeline);
 
@@ -19,9 +20,9 @@ const calculateHash = async (command) => {
     await asyncPipeline(fileStream, hash);
     const hashDigest = hash.digest("hex");
 
-    console.log(`SHA256 Hash: ${hashDigest}\n`);
+    log.blue(`SHA256 Hash: ${hashDigest}`);
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

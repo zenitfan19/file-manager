@@ -1,7 +1,11 @@
 import { cwd } from "node:process";
 import { writeFile } from "node:fs/promises";
 import { join } from "node:path";
-import { checkFileAlreadyExists } from "../utils/index.js";
+import {
+  checkFileAlreadyExists,
+  operationFailedErrorLog,
+  log,
+} from "../utils/index.js";
 
 const addFile = async (command) => {
   const fileName = command.slice(3).trim();
@@ -11,9 +15,9 @@ const addFile = async (command) => {
 
     await writeFile(filePath, "");
 
-    console.log(`File created at ${filePath}\n`);
+    log.green(`File created at ${filePath}`);
   } catch {
-    console.log("Operation failed\n");
+    operationFailedErrorLog();
   }
 };
 

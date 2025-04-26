@@ -13,6 +13,7 @@ import {
   changeDirectory,
   listDirectoryContent,
 } from "../services/index.js";
+import { invalidInputErrorLog } from "./logger.js";
 
 const commandHandler = async (command) => {
   if (command === "up") {
@@ -85,7 +86,7 @@ const commandHandler = async (command) => {
     exit();
   }
 
-  console.log("Invalid input!\n");
+  invalidInputErrorLog();
 };
 
 export { commandHandler };

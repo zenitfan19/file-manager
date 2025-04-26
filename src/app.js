@@ -7,6 +7,7 @@ import {
   printCurrentDirectory,
 } from "./utils/index.js";
 import { exitProcess, changeDirectory } from "./services/index.js";
+import { log } from "./utils/index.js";
 
 const userName = getCLIArgument("username");
 
@@ -26,7 +27,7 @@ readLine.on("line", async (line) => {
 });
 process.on("exit", () => exitProcess(userName));
 
-console.log(`Welcome to the File Manager, ${userName ?? "Anonymous"}!\n`);
+log.yellow(`Welcome to the File Manager, ${userName ?? "Anonymous"}!`);
 printCurrentDirectory();
 
 readLine.prompt();
